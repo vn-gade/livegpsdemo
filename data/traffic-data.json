@@ -1,0 +1,221 @@
+{
+  "college": {
+    "lat": 16.2366,
+    "lng": 80.3957,
+    "name": "KHIT College (Chowdavaram, Guntur)"
+  },
+
+  "roadSegments": [
+    {
+      "id": "seg1",
+      "name": "NH-16 Highway (Guntur - Chowdavaram Corridor)",
+      "coordinates": [
+        [16.2750, 80.4100],
+        [16.2620, 80.4040],
+        [16.2480, 80.3990],
+        [16.2366, 80.3957]
+      ],
+      "hourlyCongestion": [10, 8, 7, 6, 8, 20, 55, 82, 90, 85, 65, 50, 45, 42, 40, 48, 60, 78, 88, 80, 65, 45, 28, 15]
+    },
+    {
+      "id": "seg2",
+      "name": "Brodipet Main Road (4/1 to 4/15)",
+      "coordinates": [
+        [16.3140, 80.4400],
+        [16.3110, 80.4420],
+        [16.3080, 80.4435],
+        [16.3050, 80.4450]
+      ],
+      "hourlyCongestion": [8, 6, 5, 4, 7, 18, 60, 88, 92, 87, 70, 55, 48, 44, 42, 50, 65, 82, 90, 83, 68, 48, 30, 12]
+    },
+    {
+      "id": "seg3",
+      "name": "Shyamala Nagar Main Road",
+      "coordinates": [
+        [16.2980, 80.4320],
+        [16.2950, 80.4350],
+        [16.2920, 80.4370],
+        [16.2890, 80.4385]
+      ],
+      "hourlyCongestion": [12, 10, 8, 7, 10, 25, 50, 78, 88, 82, 62, 48, 40, 38, 36, 44, 58, 75, 85, 78, 62, 42, 25, 14]
+    },
+    {
+      "id": "seg4",
+      "name": "Arundalpet 1st & 2nd Lines",
+      "coordinates": [
+        [16.3080, 80.4470],
+        [16.3050, 80.4460],
+        [16.3020, 80.4450],
+        [16.2990, 80.4440]
+      ],
+      "hourlyCongestion": [5, 4, 3, 3, 5, 15, 45, 72, 85, 80, 58, 42, 35, 33, 30, 40, 55, 70, 82, 75, 58, 38, 20, 8]
+    },
+    {
+      "id": "seg5",
+      "name": "Lakshmipuram Main Road",
+      "coordinates": [
+        [16.3030, 80.4550],
+        [16.3000, 80.4530],
+        [16.2970, 80.4510],
+        [16.2940, 80.4490]
+      ],
+      "hourlyCongestion": [7, 5, 4, 3, 6, 22, 62, 85, 93, 89, 72, 58, 50, 46, 44, 55, 68, 85, 92, 86, 70, 50, 32, 16]
+    },
+    {
+      "id": "seg6",
+      "name": "Gujanagundla Ring Road Junction",
+      "coordinates": [
+        [16.2920, 80.4250],
+        [16.2890, 80.4270],
+        [16.2860, 80.4290],
+        [16.2830, 80.4310]
+      ],
+      "hourlyCongestion": [15, 12, 10, 8, 12, 30, 68, 90, 95, 91, 75, 62, 55, 52, 50, 60, 72, 88, 94, 88, 72, 55, 38, 20]
+    },
+    {
+      "id": "seg7",
+      "name": "Collectorate - Kanna Vari Thota Road",
+      "coordinates": [
+        [16.3060, 80.4360],
+        [16.3030, 80.4375],
+        [16.3000, 80.4390],
+        [16.2970, 80.4405]
+      ],
+      "hourlyCongestion": [6, 4, 3, 2, 5, 18, 48, 75, 82, 78, 60, 46, 38, 36, 34, 42, 56, 72, 80, 74, 58, 40, 22, 10]
+    },
+    {
+      "id": "seg8",
+      "name": "Pattabhipuram - SVN Colony Link Road",
+      "coordinates": [
+        [16.3050, 80.4230],
+        [16.3020, 80.4250],
+        [16.2990, 80.4270],
+        [16.2960, 80.4290]
+      ],
+      "hourlyCongestion": [8, 6, 5, 4, 7, 20, 52, 78, 86, 80, 62, 48, 42, 40, 38, 46, 60, 76, 84, 78, 62, 44, 26, 12]
+    },
+    {
+      "id": "seg9",
+      "name": "Nallapadu - Chowdavaram Bypass",
+      "coordinates": [
+        [16.2650, 80.3950],
+        [16.2550, 80.3955],
+        [16.2450, 80.3956],
+        [16.2366, 80.3957]
+      ],
+      "hourlyCongestion": [9, 7, 5, 4, 6, 16, 44, 70, 80, 76, 58, 44, 38, 36, 34, 42, 54, 68, 78, 72, 56, 38, 22, 11]
+    }
+  ],
+
+  "locations": [
+    { "id": "loc1", "name": "KHIT College (Chowdavaram)", "lat": 16.2366, "lng": 80.3957 },
+    { "id": "loc2", "name": "Guntur RTC Bus Stand", "lat": 16.3020, "lng": 80.4490 },
+    { "id": "loc3", "name": "Brodipet", "lat": 16.3090, "lng": 80.4425 },
+    { "id": "loc4", "name": "Shyamala Nagar", "lat": 16.2940, "lng": 80.4350 },
+    { "id": "loc5", "name": "Arundalpet", "lat": 16.3040, "lng": 80.4450 },
+    { "id": "loc6", "name": "Lakshmipuram", "lat": 16.2980, "lng": 80.4520 },
+    { "id": "loc7", "name": "Gujanagundla", "lat": 16.2870, "lng": 80.4280 },
+    { "id": "loc8", "name": "Pattabhipuram", "lat": 16.2990, "lng": 80.4250 }
+  ],
+
+  "routeMatrix": {
+    "loc1-loc3": { "route": "KHIT College ↔ NH-16 ↔ Gujanagundla ↔ Arundalpet ↔ Brodipet", "travelTime": 22, "timeSaved": 8, "bestTime": "Before 8:00 AM or After 8:30 PM", "congestion": "Medium" },
+    "loc1-loc4": { "route": "KHIT College ↔ NH-16 ↔ Nallapadu ↔ Pattabhipuram ↔ Shyamala Nagar", "travelTime": 18, "timeSaved": 6, "bestTime": "Before 8:15 AM or After 8:30 PM", "congestion": "Low" },
+    "loc1-loc2": { "route": "KHIT College ↔ NH-16 ↔ Lakshmipuram ↔ Guntur RTC Bus Stand", "travelTime": 25, "timeSaved": 9, "bestTime": "Before 7:45 AM or After 9:00 PM", "congestion": "High" },
+    "loc1-loc5": { "route": "KHIT College ↔ NH-16 ↔ Collectorate Road ↔ Arundalpet", "travelTime": 20, "timeSaved": 7, "bestTime": "Before 8:00 AM or After 8:45 PM", "congestion": "Medium" },
+    "loc1-loc6": { "route": "KHIT College ↔ NH-16 ↔ Gujanagundla ↔ Lakshmipuram", "travelTime": 24, "timeSaved": 8, "bestTime": "Before 7:45 AM or After 9:00 PM", "congestion": "High" },
+    "loc1-loc7": { "route": "KHIT College ↔ Chowdavaram ↔ Nallapadu ↔ Gujanagundla", "travelTime": 15, "timeSaved": 5, "bestTime": "Before 8:30 AM or After 8:00 PM", "congestion": "Low" },
+    "loc1-loc8": { "route": "KHIT College ↔ NH-16 ↔ Gujanagundla ↔ Pattabhipuram", "travelTime": 16, "timeSaved": 5, "bestTime": "Before 8:15 AM or After 8:15 PM", "congestion": "Low" },
+    "loc2-loc3": { "route": "Guntur RTC Bus Stand ↔ Arundalpet ↔ Brodipet", "travelTime": 10, "timeSaved": 3, "bestTime": "Before 8:30 AM or After 8:30 PM", "congestion": "Medium" },
+    "loc3-loc4": { "route": "Brodipet ↔ Pattabhipuram ↔ Shyamala Nagar", "travelTime": 12, "timeSaved": 4, "bestTime": "Before 8:30 AM or After 8:30 PM", "congestion": "Low" },
+    "loc4-loc7": { "route": "Shyamala Nagar ↔ Pattabhipuram ↔ Gujanagundla", "travelTime": 8, "timeSaved": 2, "bestTime": "Before 9:00 AM or After 8:00 PM", "congestion": "Low" },
+    "loc5-loc6": { "route": "Arundalpet ↔ RTC Cross Road ↔ Lakshmipuram", "travelTime": 8, "timeSaved": 2, "bestTime": "Any time", "congestion": "Low" }
+  },
+
+  "busRoutes": [
+    {
+      "routeId": "R1",
+      "routeName": "Route 1 - Brodipet → KHIT College",
+      "defaultBusNumbers": ["12", "28"],
+      "path": [
+        [16.3090, 80.4425],
+        [16.3030, 80.4410],
+        [16.2950, 80.4350],
+        [16.2870, 80.4280],
+        [16.2750, 80.4180],
+        [16.2620, 80.4080],
+        [16.2500, 80.4020],
+        [16.2420, 80.3980],
+        [16.2366, 80.3957]
+      ]
+    },
+    {
+      "routeId": "R2",
+      "routeName": "Route 2 - Shyamala Nagar → KHIT College",
+      "defaultBusNumbers": ["45", "33"],
+      "path": [
+        [16.2940, 80.4350],
+        [16.2890, 80.4310],
+        [16.2820, 80.4230],
+        [16.2710, 80.4120],
+        [16.2580, 80.4030],
+        [16.2460, 80.3980],
+        [16.2366, 80.3957]
+      ]
+    },
+    {
+      "routeId": "R3",
+      "routeName": "Route 3 - Guntur RTC Bus Stand → KHIT College",
+      "defaultBusNumbers": ["07", "19"],
+      "path": [
+        [16.3020, 80.4490],
+        [16.2980, 80.4440],
+        [16.2890, 80.4330],
+        [16.2780, 80.4200],
+        [16.2650, 80.4090],
+        [16.2510, 80.4010],
+        [16.2366, 80.3957]
+      ]
+    },
+    {
+      "routeId": "R4",
+      "routeName": "Route 4 - Arundalpet → KHIT College",
+      "defaultBusNumbers": ["52", "61"],
+      "path": [
+        [16.3040, 80.4450],
+        [16.3000, 80.4390],
+        [16.2910, 80.4300],
+        [16.2790, 80.4180],
+        [16.2640, 80.4060],
+        [16.2490, 80.3990],
+        [16.2366, 80.3957]
+      ]
+    },
+    {
+      "routeId": "R5",
+      "routeName": "Route 5 - Gujanagundla → KHIT College",
+      "defaultBusNumbers": ["38", "74"],
+      "path": [
+        [16.2870, 80.4280],
+        [16.2770, 80.4170],
+        [16.2650, 80.4060],
+        [16.2530, 80.3990],
+        [16.2430, 80.3970],
+        [16.2366, 80.3957]
+      ]
+    },
+    {
+      "routeId": "R6",
+      "routeName": "Route 6 - Pattabhipuram → KHIT College",
+      "defaultBusNumbers": ["15", "82"],
+      "path": [
+        [16.2990, 80.4250],
+        [16.2890, 80.4200],
+        [16.2760, 80.4130],
+        [16.2630, 80.4050],
+        [16.2490, 80.3980],
+        [16.2366, 80.3957]
+      ]
+    }
+  ]
+}

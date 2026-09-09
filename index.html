@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LIVE GPS TRACKER DEMO | Smart Bus Tracking & Traffic Intelligence</title>
+  <meta name="description"
+    content="LIVE GPS TRACKER DEMO – Real-time GPS-powered bus tracking, traffic congestion analysis, and smart route intelligence for modern urban transportation. Built for KHIT Engineering Day Expo." />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Leaflet.js -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- Favicon placeholder -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚌</text></svg>" />
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════ NAVBAR ═══ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main Navigation">
+    <div class="navbar-inner">
+      <a href="#home" class="navbar-brand" aria-label="LIVE GPS TRACKER DEMO Home">
+        <div class="brand-icon" aria-hidden="true">🛰️</div>
+        <div class="brand-text">
+          <span class="brand-main">LIVE GPS TRACKER DEMO</span>
+          <span class="brand-sub">Smart City Transportation</span>
+        </div>
+      </a>
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#solution">Solution</a></li>
+        <li><a href="#traffic-map">Traffic Map</a></li>
+        <li><a href="#analytics">Analytics</a></li>
+        <li><a href="#route-tool">Route Tool</a></li>
+        <li><a href="#live-gps">Live GPS</a></li>
+        <li><a href="driver.html" class="nav-driver" target="_blank" rel="noopener">🚌 Driver View</a></li>
+        <li><a href="faculty-dashboard.html" class="nav-faculty" target="_blank" rel="noopener">📡 Faculty Dashboard</a>
+        </li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════ HERO ═══ -->
+  <section class="hero" id="home" aria-labelledby="hero-title">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-live-badge">
+          <span class="live-dot" aria-hidden="true"></span>
+          LIVE GPS TRACKER DEMO
+        </div>
+        <span class="hero-brand">LIVE GPS TRACKER DEMO</span>
+        <h1 id="hero-title">
+          Solving Urban<br />Traffic Congestion<br />
+          <span class="gradient-text">with GPS Intelligence</span>
+        </h1>
+        <p>
+          Real-time GPS-powered bus tracking and traffic intelligence for smarter,
+          safer and more efficient transportation. Monitor live bus locations,
+          analyze congestion patterns, and get intelligent route suggestions.
+        </p>
+        <div class="hero-ctas">
+          <a href="#live-gps" class="btn btn-primary btn-lg">
+            🛰️ View Live Demo
+          </a>
+          <a href="#traffic-map" class="btn btn-outline btn-lg">
+            🗺️ Traffic Map
+          </a>
+        </div>
+        <div class="hero-stat-banner">
+          <div class="stat-pill">🕐 Commuters lose <strong>45+ min/day</strong> to congestion</div>
+          <div class="stat-pill">⛽ <strong>30% fuel</strong> wasted in stop-go traffic</div>
+          <div class="stat-pill">🌿 Urban transport adds <strong>23%</strong> of CO₂</div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="khit-logo-container" style="text-align: center; padding: 20px;">
+          <img
+            src="https://assets.allegiance-educare.com/colleges/thumb/250_250_148784410010433749152007718488206976451354689150891n.jpg"
+            alt="KHIT Logo" class="khit-hero-logo"
+            style="max-width: 100%; height: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-2xl); object-fit: contain;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ PROBLEM ═══ -->
+  <section class="problem-section section" id="problem" aria-labelledby="problem-title">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-badge">⚠️ The Problem</div>
+        <h2 class="section-title" id="problem-title">Why Urban Transportation <span>Needs Solving</span></h2>
+        <p class="section-subtitle">Without real-time data, cities suffer from inefficient traffic management and
+          unpredictable public transport — costing millions in time and fuel every day.</p>
+      </div>
+      <div class="problem-cards">
+        <div class="problem-card reveal reveal-delay-1">
+          <div class="problem-icon icon-red" aria-hidden="true">⏰</div>
+          <div class="problem-stat">45 min</div>
+          <h3>Time Loss</h3>
+          <p>Average commuters lose over 45 minutes daily stuck in congestion, translating to hundreds of hours per year
+            and significant productivity loss for individuals and businesses alike.</p>
+        </div>
+        <div class="problem-card reveal reveal-delay-2">
+          <div class="problem-icon icon-yellow" aria-hidden="true">⛽</div>
+          <div class="problem-stat">30%</div>
+          <h3>Fuel Wastage</h3>
+          <p>Stop-and-go traffic caused by poor congestion management wastes up to 30% of vehicle fuel, directly
+            increasing operational costs for fleet operators and individual commuters.</p>
+        </div>
+        <div class="problem-card reveal reveal-delay-3">
+          <div class="problem-icon icon-green-inv" aria-hidden="true">🌿</div>
+          <div class="problem-stat">23%</div>
+          <h3>Pollution Increase</h3>
+          <p>Urban transport contributes 23% of total city CO₂ emissions. Congestion amplifies this figure — idling
+            vehicles emit up to 3× more pollutants per kilometer than vehicles in free flow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ SOLUTION ═══ -->
+  <section class="section" id="solution" aria-labelledby="solution-title">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-badge">✅ Our Solution</div>
+        <h2 class="section-title" id="solution-title">Complete GPS Intelligence <span>Platform</span></h2>
+        <p class="section-subtitle">An end-to-end system combining real-time GPS tracking, congestion analysis,
+          intelligent routing, and live faculty monitoring.</p>
+      </div>
+
+      <!-- System Flow -->
+      <div class="solution-flow reveal" role="list" aria-label="System data flow">
+        <div class="flow-step" role="listitem">
+          <div class="flow-icon">📡</div>
+          <span class="flow-label">GPS Data</span>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">→</span>
+        <div class="flow-step" role="listitem">
+          <div class="flow-icon">📊</div>
+          <span class="flow-label">Congestion<br>Scoring</span>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">→</span>
+        <div class="flow-step" role="listitem">
+          <div class="flow-icon">🗺️</div>
+          <span class="flow-label">Visualization</span>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">→</span>
+        <div class="flow-step" role="listitem">
+          <div class="flow-icon">🧭</div>
+          <span class="flow-label">Route<br>Suggestion</span>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">→</span>
+        <div class="flow-step" role="listitem">
+          <div class="flow-icon">🚌</div>
+          <span class="flow-label">Live Bus<br>Tracking</span>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">→</span>
+        <div class="flow-step" role="listitem">
+          <div class="flow-icon">👨‍💼</div>
+          <span class="flow-label">Faculty<br>Monitoring</span>
+        </div>
+      </div>
+
+      <!-- How It Works -->
+      <div class="text-center reveal" style="margin-bottom:32px;">
+        <h3 class="section-title" style="font-size:1.5rem;">How It <span>Works</span></h3>
+      </div>
+      <div class="timeline">
+        <div class="timeline-step reveal reveal-delay-1">
+          <div class="step-number">1</div>
+          <div class="step-icon">📡</div>
+          <h3>GPS Data Collection</h3>
+          <p>Bus drivers use the Driver View app on their mobile phones. The browser's built-in
+            <code>navigator.geolocation</code> API captures real-time latitude, longitude, speed, and accuracy data
+            every few seconds.</p>
+        </div>
+        <div class="timeline-step reveal reveal-delay-2">
+          <div class="step-number">2</div>
+          <div class="step-icon">🔢</div>
+          <h3>Congestion Scoring</h3>
+          <p>Road segments are scored 0–100 based on traffic density, time-of-day patterns, and historical data. Scores
+            are classified: Low (0–33), Medium (34–66), and High (67–100) with color-coded visualization.</p>
+        </div>
+        <div class="timeline-step reveal reveal-delay-3">
+          <div class="step-number">3</div>
+          <div class="step-icon">🗺️</div>
+          <h3>Live Map & Analytics</h3>
+          <p>Leaflet.js renders interactive maps with colored polylines for road segments. Chart.js powers the analytics
+            dashboard with hourly congestion trends, weekly patterns, and distribution breakdowns.</p>
+        </div>
+        <div class="timeline-step reveal reveal-delay-4">
+          <div class="step-number">4</div>
+          <div class="step-icon">👁️</div>
+          <h3>Faculty Monitoring</h3>
+          <p>Faculty staff access a dedicated dashboard showing all active buses in real time. Cross-tab sync via
+            <code>localStorage</code> events simulates live data. Full deployment uses Firebase Realtime Database.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ TRAFFIC MAP ═══ -->
+  <section class="map-section section" id="traffic-map" aria-labelledby="map-title">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-badge">🗺️ Live Map</div>
+        <h2 class="section-title" id="map-title">Live Congestion <span>Traffic Map</span></h2>
+        <p class="section-subtitle">Interactive road-level congestion visualization. Use the time slider to see how
+          traffic patterns change throughout the day.</p>
+      </div>
+      <div class="map-container-wrapper">
+        <div id="congestion-map" role="application" aria-label="Interactive traffic congestion map"></div>
+        <div class="map-controls">
+          <!-- Time Control -->
+          <div class="map-control-card">
+            <h4>⏰ Time of Day</h4>
+            <div class="time-display" id="timeDisplay" aria-live="polite">8:00 AM</div>
+            <input type="range" class="time-slider" id="timeSlider" min="6" max="23" value="8" step="1"
+              aria-label="Select time of day from 6 AM to 11 PM" aria-valuetext="8 AM" />
+            <div class="time-labels"><span>6 AM</span><span>11 PM</span></div>
+          </div>
+          <!-- Legend -->
+          <div class="map-control-card">
+            <h4>🎨 Legend</h4>
+            <div class="legend-items">
+              <div class="legend-item"><span class="legend-dot green"></span><span><strong>Low Congestion</strong> —
+                  Score 0–33</span></div>
+              <div class="legend-item"><span class="legend-dot yellow"></span><span><strong>Medium Congestion</strong> —
+                  Score 34–66</span></div>
+              <div class="legend-item"><span class="legend-dot red"></span><span><strong>High Congestion</strong> —
+                  Score 67–100</span></div>
+            </div>
+          </div>
+          <!-- Segment List -->
+          <div class="map-control-card" style="flex:1;overflow:hidden;display:flex;flex-direction:column;">
+            <h4>📍 Road Segments</h4>
+            <div class="segment-list" id="segmentList" aria-label="Road segment congestion list" role="list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ ANALYTICS ═══ -->
+  <section class="section" id="analytics" aria-labelledby="analytics-title">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-badge">📊 Analytics</div>
+        <h2 class="section-title" id="analytics-title">Traffic <span>Analytics Dashboard</span></h2>
+        <p class="section-subtitle">Data-driven insights into congestion patterns, road usage trends, and traffic
+          distribution across the network.</p>
+      </div>
+      <div class="analytics-grid" style="margin-top:40px;">
+        <!-- Bar Chart - Hourly Congestion -->
+        <div class="chart-card wide reveal">
+          <div class="chart-header">
+            <div>
+              <h3>Hourly Congestion Pattern</h3>
+              <p class="chart-subtitle">Average congestion score by hour of day (0 = Free Flow, 100 = Gridlock)</p>
+            </div>
+            <select class="select-styled" id="barChartFilter" aria-label="Select road segment for bar chart">
+              <option value="all">All Segments (Average)</option>
+            </select>
+          </div>
+          <canvas id="barChart" height="90" aria-label="Bar chart showing hourly congestion patterns"></canvas>
+        </div>
+
+        <!-- Line Chart - Weekly Trend -->
+        <div class="chart-card reveal reveal-delay-1">
+          <div class="chart-header">
+            <div>
+              <h3>Weekly Congestion Trend</h3>
+              <p class="chart-subtitle">Peak hour congestion by day of week</p>
+            </div>
+            <select class="select-styled" id="lineChartFilter" aria-label="Select road segment for trend chart">
+              <option value="seg1">MG Road</option>
+            </select>
+          </div>
+          <canvas id="lineChart" height="180" aria-label="Line chart showing weekly congestion trend"></canvas>
+        </div>
+
+        <!-- Doughnut Chart -->
+        <div class="chart-card reveal reveal-delay-2" style="display:flex;flex-direction:column;align-items:center;">
+          <div class="chart-header" style="width:100%;">
+            <div>
+              <h3>Congestion Distribution</h3>
+              <p class="chart-subtitle">Current traffic breakdown (selected time)</p>
+            </div>
+          </div>
+          <canvas id="doughnutChart" height="220" style="max-width:280px;"
+            aria-label="Doughnut chart showing congestion level distribution"></canvas>
+          <div id="doughnut-legend"
+            style="margin-top:16px;display:flex;gap:16px;font-size:0.82rem;color:var(--text-secondary);flex-wrap:wrap;justify-content:center;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ ROUTE TOOL ═══ -->
+  <section class="route-section section" id="route-tool" aria-labelledby="route-title">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-badge">🧭 Smart Routing</div>
+        <h2 class="section-title" id="route-title">Intelligent Route <span>Suggestion</span></h2>
+        <p class="section-subtitle">Get AI-powered route recommendations based on current congestion levels, historical
+          data, and time-of-day patterns.</p>
+      </div>
+      <div class="route-grid">
+        <div class="card reveal" style="padding:32px;">
+          <h3 style="margin-bottom:24px;font-size:1.1rem;">🔍 Plan Your Route</h3>
+          <div class="route-form">
+            <div class="form-group">
+              <label class="form-label" for="routeFrom">📍 From</label>
+              <select class="input-field select-styled" id="routeFrom" aria-label="Select starting location">
+                <option value="">Select starting point...</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="routeTo">🏁 To</label>
+              <select class="input-field select-styled" id="routeTo" aria-label="Select destination">
+                <option value="">Select destination...</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" id="findRouteBtn" onclick="findRoute()" aria-label="Find best route">
+              🧭 Find Best Route
+            </button>
+          </div>
+        </div>
+
+        <div class="route-result-card reveal reveal-delay-1">
+          <p class="route-result-title">📌 RECOMMENDED ROUTE</p>
+          <div id="routeResultContent">
+            <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.7;">
+              Select a starting location and destination above, then click <strong style="color:var(--blue-400);">Find
+                Best Route</strong> to get intelligent routing suggestions based on real-time congestion data.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ LIVE GPS ═══ -->
+  <section class="live-gps-section section" id="live-gps" aria-labelledby="gps-title">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-badge">🛰️ Live Tracking</div>
+        <h2 class="section-title" id="gps-title"><span>LIVE GPS</span> Tracker Demo</h2>
+        <p class="section-subtitle">
+          Real-time GPS bus tracking with separate Driver and Faculty interfaces.
+          Open each view in its own browser tab for a live cross-tab demo.
+        </p>
+      </div>
+      <div class="live-gps-cards">
+        <a href="driver.html" target="_blank" rel="noopener" class="demo-link-card driver reveal reveal-delay-1"
+          aria-label="Open Driver View">
+          <span class="dlc-icon">🚌</span>
+          <h3 class="dlc-title green">Driver View</h3>
+          <p class="dlc-desc">
+            Mobile-optimized interface for bus drivers. Register your bus, go live, and share real GPS coordinates.
+            Designed for use on a driver's smartphone.
+          </p>
+          <span class="dlc-btn green">Open Driver View →</span>
+        </a>
+        <a href="faculty-dashboard.html" target="_blank" rel="noopener"
+          class="demo-link-card faculty reveal reveal-delay-2" aria-label="Open Faculty Dashboard">
+          <span class="dlc-icon">📡</span>
+          <h3 class="dlc-title blue">Faculty Dashboard</h3>
+          <p class="dlc-desc">
+            Professional monitoring dashboard for faculty staff. View all active buses, live locations, speeds and ETAs
+            in a real-time control room interface.
+          </p>
+          <span class="dlc-btn blue">Open Dashboard →</span>
+        </a>
+      </div>
+      <div style="text-align:center;margin-top:24px;">
+        <p
+          style="font-size:0.8rem;color:var(--text-muted);max-width:700px;margin:0 auto;line-height:1.7;background:rgba(14,165,233,0.04);border:1px solid rgba(14,165,233,0.1);border-radius:var(--radius-md);padding:14px 20px;">
+          <strong style="color:var(--blue-400);">Demo Note:</strong>
+          Demo uses cross-tab <code>localStorage</code> sync for live presentation. Full deployment would use Firebase
+          Realtime Database or a similar backend so this works across real separate devices over the internet.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ IMPACT ═══ -->
+  <section class="section" id="impact" aria-labelledby="impact-title" style="background:var(--navy-800);">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-badge">📈 Projected Impact</div>
+        <h2 class="section-title" id="impact-title">Estimated System <span>Impact</span></h2>
+        <p class="section-subtitle">Illustrative estimates of potential improvements through intelligent GPS tracking
+          and traffic management.</p>
+      </div>
+      <div class="impact-grid" style="margin-top:40px;">
+        <div class="impact-card reveal reveal-delay-1">
+          <div class="impact-icon">⏱️</div>
+          <span class="impact-val">28 min</span>
+          <span class="impact-label">Daily Time Saved per Commuter</span>
+        </div>
+        <div class="impact-card reveal reveal-delay-2">
+          <div class="impact-icon">⛽</div>
+          <span class="impact-val">18%</span>
+          <span class="impact-label">Reduction in Fuel Consumption</span>
+        </div>
+        <div class="impact-card reveal reveal-delay-3">
+          <div class="impact-icon">🌿</div>
+          <span class="impact-val">12%</span>
+          <span class="impact-label">CO₂ Emission Reduction</span>
+        </div>
+        <div class="impact-card reveal reveal-delay-4">
+          <div class="impact-icon">🚏</div>
+          <span class="impact-val">95%</span>
+          <span class="impact-label">Reduction in Bus Wait Uncertainty</span>
+        </div>
+      </div>
+      <p class="impact-note reveal">⚠️ <em>These are illustrative estimates for demonstration purposes. They are not
+          scientifically verified real-world results.</em></p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ ABOUT ═══ -->
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-badge">👥 Team</div>
+        <h2 class="section-title" id="about-title">LIVE GPS TRACKER DEMO — <span>Our Team</span></h2>
+        <p class="section-subtitle">Built by engineering students for the KHIT Engineering Day Expo, demonstrating
+          real-world smart transportation solutions.</p>
+      </div>
+      <div class="team-grid" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+        <div class="team-card reveal reveal-delay-1" style="flex: 1; max-width: 300px;">
+          <div class="team-avatar" aria-hidden="true">👨‍💻</div>
+          <h3 class="team-name">G V Narasaiah</h3>
+          <p class="team-roll">Roll No: 258X1A0597</p>
+          <span class="team-role">Project Lead & Full-Stack</span>
+        </div>
+        <div class="team-card reveal reveal-delay-2" style="flex: 1; max-width: 300px;">
+          <div class="team-avatar" aria-hidden="true">👨‍🔬</div>
+          <h3 class="team-name">D Rohith</h3>
+          <p class="team-roll">Roll No: 258X1A0586</p>
+          <span class="team-role">GPS & Backend Systems</span>
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="college-badge reveal">
+          🏫 <strong>Kallam Haranadhareddy Institute of Technology | Engineering Day Expo</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ FOOTER ═══ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">
+            <span class="footer-brand-main">🛰️ LIVE GPS TRACKER DEMO</span>
+          </div>
+          <p class="footer-desc">
+            A real-time GPS tracking and traffic intelligence platform demonstrating
+            smart urban transportation solutions. Built for the KHIT Engineering Day Expo.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Features</h4>
+          <ul class="footer-links">
+            <li><a href="#traffic-map">Traffic Map</a></li>
+            <li><a href="#analytics">Analytics Dashboard</a></li>
+            <li><a href="#route-tool">Route Suggestions</a></li>
+            <li><a href="driver.html" target="_blank">Driver View</a></li>
+            <li><a href="faculty-dashboard.html" target="_blank">Faculty Dashboard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Project</h4>
+          <ul class="footer-links">
+            <li><a href="#problem">Problem Statement</a></li>
+            <li><a href="#solution">Our Solution</a></li>
+            <li><a href="#impact">Impact Estimates</a></li>
+            <li><a href="#about">Team</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-disclaimer">
+        <strong>⚠️ Demo Disclaimer:</strong>
+        Demo uses cross-tab sync (<code>localStorage</code> storage events) for live presentation.
+        Full deployment would use Firebase Realtime Database or a similar backend so this works
+        across real separate devices over the internet. GPS data shared via localStorage is a
+        demonstration architecture, not a production internet-based tracking system.
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2026 LIVE GPS TRACKER DEMO. Built for KHIT Engineering Day.</span>
+        <span class="footer-made">Made for <span>KHIT Engineering Day Expo</span> 🎓</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="route-engine.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

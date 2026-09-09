@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Driver View — LIVE GPS TRACKER DEMO</title>
+  <meta name="description" content="Driver View for LIVE GPS TRACKER DEMO. Complete morning-to-college pickup, return drop-off, off-duty controls, and real-time GPS tracking." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="route-engine.js"></script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚌</text></svg>" />
+  <style>
+    body { background: var(--navy-900); }
+    .driver-btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+    .trip-badge-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 9999px; font-size: 0.8rem; font-weight: 600; }
+    .trip-badge-pill.outbound { background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
+    .trip-badge-pill.college { background: rgba(234,179,8,0.15); color: #facc15; border: 1px solid rgba(234,179,8,0.3); }
+    .trip-badge-pill.return { background: rgba(14,165,233,0.15); color: #38bdf8; border: 1px solid rgba(14,165,233,0.3); }
+    .trip-badge-pill.completed { background: rgba(168,85,247,0.15); color: #c084fc; border: 1px solid rgba(168,85,247,0.3); }
+    .stops-progress-card { background: rgba(15,23,42,0.6); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 16px; margin: 16px 0; }
+    .stop-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.88rem; }
+    .stop-item:last-child { border-bottom: none; }
+    .stop-item.done { color: var(--text-muted); text-decoration: line-through; }
+    .stop-item.current { color: #38bdf8; font-weight: 600; }
+    .stop-item.upcoming { color: var(--text-secondary); }
+  </style>
+</head>
+<body>
+
+<!-- ── Driver Header ── -->
+<header class="driver-header" role="banner">
+  <div class="driver-brand">
+    <span>🛰️ LIVE GPS TRACKER DEMO</span>
+    <span>Driver View</span>
+  </div>
+  <div style="display:flex;gap:8px;">
+    <a href="index.html" class="btn btn-outline btn-sm" style="font-size:0.8rem;" aria-label="Main Site">← Site</a>
+    <a href="faculty-dashboard.html" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="font-size:0.8rem;" aria-label="Faculty Dashboard">📡 Faculty</a>
+  </div>
+</header>
+
+<!-- ── Driver Main Content ── -->
+<main class="driver-page" id="driverMain">
+  <div class="driver-container">
+
+    <!-- Page Header -->
+    <div style="text-align:center;padding:16px 0 8px;">
+      <h1 style="font-size:1.35rem;font-weight:700;font-family:var(--font-heading);">🚌 Bus Driver Console</h1>
+      <p style="font-size:0.85rem;color:var(--text-muted);margin-top:4px;">Smart College Bus Tracking & Drop-off Management</p>
+    </div>
+
+    <!-- GPS Error Message -->
+    <div class="gps-error-msg" id="gpsErrorMsg" role="alert">
+      📍 <strong>GPS permission was not granted.</strong> Using automated Demo Simulation mode for presentation.
+    </div>
+
+    <!-- Demo Mode Banner -->
+    <div class="demo-mode-banner" id="demoModeBanner" role="status">
+      🎭 <strong>Demo Tracking Active</strong> — Simulating bus GPS along the selected Guntur route.
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 1. REGISTRATION / DUTY START CARD          -->
+    <!-- ========================================== -->
+    <div class="driver-reg-card" id="regCard">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <h2 style="font-size:1rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.5px;margin:0;">
+          📋 Start / Resume Duty
+        </h2>
+        <span class="badge badge-low" style="font-size:0.75rem;">OFF DUTY</span>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="driverName">👤 Driver Name</label>
+        <input type="text" class="input-field" id="driverName"
+               placeholder="e.g. Ravi Kumar"
+               autocomplete="name"
+               aria-required="true" />
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="busNumber">🚌 Bus Number</label>
+        <input type="text" class="input-field" id="busNumber"
+               placeholder="e.g. 28"
+               pattern="[0-9A-Za-z]+"
+               inputmode="numeric"
+               aria-required="true" />
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="routeName">🛣️ Assigned Route</label>
+        <select class="input-field" id="routeName" aria-required="true" onchange="onRouteSelectChange()">
+          <option value="">Select your route...</option>
+          <option value="Route 1 - Brodipet ↔ KHIT College" data-id="R1">Route 1 - Brodipet ↔ KHIT College</option>
+          <option value="Route 2 - Syamala Nagar ↔ KHIT College" data-id="R2">Route 2 - Syamala Nagar ↔ KHIT College</option>
+          <option value="Route 3 - Guntur RTC Bus Stand ↔ KHIT College" data-id="R3">Route 3 - Guntur RTC Bus Stand ↔ KHIT College</option>
+          <option value="Route 4 - Gorantla ↔ KHIT College" data-id="R4">Route 4 - Gorantla ↔ KHIT College</option>
+          <option value="Route 5 - ANU / Mangalagiri ↔ KHIT College" data-id="R5">Route 5 - ANU / Mangalagiri ↔ KHIT College</option>
+          <option value="Route 6 - Perecherla ↔ KHIT College" data-id="R6">Route 6 - Perecherla ↔ KHIT College</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="tripDirection">🧭 Trip Direction</label>
+        <select class="input-field" id="tripDirection">
+          <option value="OUTBOUND">🏠 Home Locations → 🏫 KHIT College (Morning Pickup)</option>
+          <option value="RETURN">🏫 KHIT College → 🏠 Home Locations (Evening Drop-off)</option>
+        </select>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="driver-btn-group">
+        <button class="btn btn-success btn-lg" id="startDutyBtn" onclick="startDuty(false)" aria-label="Start duty and go live">
+          🟢 Start Duty / Go Live
+        </button>
+
+        <button class="btn btn-primary btn-lg" id="resumeDutyBtn" onclick="startDuty(true)" aria-label="Resume already started trip">
+          🔵 I Already Started My Trip (Resume)
+        </button>
+
+
+      </div>
+
+      <div class="driver-disclaimer" style="margin-top:16px;">
+        ℹ️ Real GPS is captured via browser <code>watchPosition()</code>. All bus updates are broadcast to the <strong>Faculty Transport Dashboard</strong> in real time.
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 2. ACTIVE LIVE STATUS CARD                -->
+    <!-- ========================================== -->
+    <div class="live-status-card" id="liveStatusCard" role="status" aria-live="polite" aria-label="Live GPS status">
+      
+      <!-- Top header with status badge -->
+      <div class="live-status-header">
+        <div class="live-indicator-lg" id="liveIndicatorDot"></div>
+        <div style="flex:1;">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+            <div class="live-title green" id="liveStatusTitle">YOU ARE LIVE</div>
+            <span id="tripPillBadge" class="trip-badge-pill outbound">MORNING PICKUP</span>
+          </div>
+          <div style="font-size:0.82rem;color:var(--text-muted);margin-top:2px;" id="liveStatusSub">GPS Active & Tracking</div>
+        </div>
+      </div>
+
+      <!-- Live metrics grid -->
+      <div class="live-stats-grid">
+        <div class="live-stat-item" id="speedCard">
+          <div class="ls-label">Current Speed</div>
+          <div class="ls-value speed" id="liveSpeed">0 km/h</div>
+        </div>
+        <div class="live-stat-item">
+          <div class="ls-label">Bus Number</div>
+          <div class="ls-value" id="liveBusNum">Bus —</div>
+        </div>
+        <div class="live-stat-item">
+          <div class="ls-label">Driver</div>
+          <div class="ls-value" id="liveDriverDisplay">—</div>
+        </div>
+        <div class="live-stat-item">
+          <div class="ls-label">Trip Direction</div>
+          <div class="ls-value" id="liveDirectionDisplay" style="font-size:0.85rem;color:#38bdf8;">Home → KHIT</div>
+        </div>
+        <div class="live-stat-item">
+          <div class="ls-label">Next Stop / Target</div>
+          <div class="ls-value" id="liveNextStop" style="font-size:0.88rem;color:#facc15;">KHIT College</div>
+        </div>
+        <div class="live-stat-item">
+          <div class="ls-label">GPS Accuracy</div>
+          <div class="ls-value" id="liveAccuracy" style="font-size:0.88rem;">—</div>
+        </div>
+        <div class="live-stat-item">
+          <div class="ls-label">Latitude</div>
+          <div class="ls-value" id="liveLat" style="font-size:0.85rem;font-family:monospace;">—</div>
+        </div>
+        <div class="live-stat-item">
+          <div class="ls-label">Longitude</div>
+          <div class="ls-value" id="liveLng" style="font-size:0.85rem;font-family:monospace;">—</div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- 3. MULTI-STOP DROP-OFF PROGRESS PANEL      -->
+      <!-- ========================================== -->
+      <div class="stops-progress-card" id="stopsProgressCard" style="display:none;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+          <strong style="font-size:0.9rem;color:var(--text-secondary);">📍 Drop-off Route Stops</strong>
+          <span id="remainingStopsCount" style="font-size:0.8rem;color:#38bdf8;font-weight:600;">3 Remaining</span>
+        </div>
+        <div id="stopsListContainer">
+          <!-- Populated by JS -->
+        </div>
+
+        <button class="btn btn-primary" id="arrivedAtStopBtn" onclick="advanceToNextStop()" style="width:100%;margin-top:12px;font-size:0.9rem;">
+          📍 Arrived at Stop / Next Drop-off
+        </button>
+      </div>
+
+      <!-- Live GPS status bar -->
+      <div class="gps-status-bar" id="gpsStatusBar">
+        📡 <span id="gpsStatusText">Acquiring live GPS stream...</span>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- 4. DYNAMIC ACTION CONTROLS                 -->
+      <!-- ========================================== -->
+      <div class="driver-btn-group" id="liveActionButtons">
+        
+        <!-- Outbound Trip: Reached College Button -->
+        <button class="btn btn-warning btn-lg" id="reachedCollegeBtn" onclick="markReachedCollege()" aria-label="Mark arrived at KHIT College">
+          🏁 I Reached KHIT College
+        </button>
+
+        <!-- At College: Start Return Trip Button -->
+        <button class="btn btn-primary btn-lg" id="startReturnBtn" onclick="startReturnTrip()" style="display:none;" aria-label="Start return trip">
+          🏠 Start Return Trip (Student Drop-off)
+        </button>
+
+        <!-- Final Trip Completed Button -->
+        <button class="btn btn-success btn-lg" id="completeFinalTripBtn" onclick="completeFinalTrip()" style="display:none;" aria-label="Complete final trip">
+          🏁 Trip Completed
+        </button>
+
+        <!-- End Duty Button (Always accessible) -->
+        <button class="btn btn-danger btn-lg" id="endDutyBtn" onclick="endDuty()" aria-label="End duty and go off duty">
+          🔴 End Duty / Go Off Duty
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 5. DRIVER LIVE MAP                         -->
+    <!-- ========================================== -->
+    <div class="driver-map-container" id="driverMapContainer" aria-label="Driver location map">
+      <div id="driver-map" style="height:320px;width:100%;border-radius:var(--radius-lg);"></div>
+    </div>
+
+    <!-- Bottom navigation links -->
+    <div style="text-align:center;padding:16px 0 32px;display:flex;justify-content:center;gap:12px;">
+      <a href="faculty-dashboard.html" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+        📡 Open Faculty Dashboard →
+      </a>
+      <a href="index.html" class="btn btn-outline btn-sm">
+        🏠 Main Site
+      </a>
+    </div>
+
+  </div>
+</main>
+
+<script src="driver.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+[
+  {
+    "routeId": "R1",
+    "routeName": "Route 1 - Brodipet ↔ KHIT College",
+    "origin": "Brodipet (Main Road)",
+    "destination": "KHIT College (Chowdavaram)",
+    "defaultBusNumbers": ["12", "28"],
+    "outboundStops": [
+      { "name": "Brodipet (Main Road)", "lat": 16.3090, "lng": 80.4425 },
+      { "name": "Arundelpet 4th Line", "lat": 16.3040, "lng": 80.4450 },
+      { "name": "Lakshmipuram Circle", "lat": 16.2980, "lng": 80.4520 },
+      { "name": "Gujjanagundla Ring Road", "lat": 16.2870, "lng": 80.4280 },
+      { "name": "Nallapadu Bypass", "lat": 16.2620, "lng": 80.3980 },
+      { "name": "KHIT College (Campus)", "lat": 16.2366, "lng": 80.3957 }
+    ],
+    "returnStops": [
+      { "name": "KHIT College (Campus)", "lat": 16.2366, "lng": 80.3957 },
+      { "name": "Nallapadu Bypass", "lat": 16.2620, "lng": 80.3980 },
+      { "name": "Gujjanagundla Ring Road", "lat": 16.2870, "lng": 80.4280 },
+      { "name": "Lakshmipuram Circle", "lat": 16.2980, "lng": 80.4520 },
+      { "name": "Arundelpet 4th Line", "lat": 16.3040, "lng": 80.4450 },
+      { "name": "Brodipet (Main Road)", "lat": 16.3090, "lng": 80.4425 }
+    ]
+  },
+  {
+    "routeId": "R2",
+    "routeName": "Route 2 - Syamala Nagar ↔ KHIT College",
+    "origin": "Syamala Nagar (Shyamala Nagar)",
+    "destination": "KHIT College (Chowdavaram)",
+    "defaultBusNumbers": ["45", "33"],
+    "outboundStops": [
+      { "name": "Syamala Nagar", "lat": 16.2940, "lng": 80.4350 },
+      { "name": "Pattabhipuram Main Road", "lat": 16.2990, "lng": 80.4250 },
+      { "name": "Inner Ring Road Junction", "lat": 16.2810, "lng": 80.4210 },
+      { "name": "Nallapadu Corridor", "lat": 16.2620, "lng": 80.3980 },
+      { "name": "KHIT College (Campus)", "lat": 16.2366, "lng": 80.3957 }
+    ],
+    "returnStops": [
+      { "name": "KHIT College (Campus)", "lat": 16.2366, "lng": 80.3957 },
+      { "name": "Nallapadu Corridor", "lat": 16.2620, "lng": 80.3980 },
+      { "name": "Inner Ring Road Junction", "lat": 16.2810, "lng": 80.4210 },
+      { "name": "Pattabhipuram Main Road", "lat": 16.2990, "lng": 80.4250 },
+      { "name": "Syamala Nagar", "lat": 16.2940, "lng": 80.4350 }
+    ]
+  },
+  {
+    "routeId": "R3",
+    "routeName": "Route 3 - Guntur RTC Bus Stand ↔ KHIT College",
+    "origin": "Guntur RTC Bus Stand",
+    "destination": "KHIT College (Chowdavaram)",
+    "defaultBusNumbers": ["07", "19"],
+    "outboundStops": [
+      { "name": "Guntur RTC Bus Stand", "lat": 16.3020, "lng": 80.4490 },
+      { "name": "Naaz Centre", "lat": 16.3015, "lng": 80.4475 },
+      { "name": "Collector Office", "lat": 16.3030, "lng": 80.4390 },
+      { "name": "Gujjanagundla", "lat": 16.2870, "lng": 80.4280 },
+      { "name": "NH-16 Highway Corridor", "lat": 16.2650, "lng": 80.4050 },
+      { "name": "KHIT College (Campus)", "lat": 16.2366, "lng": 80.3957 }
+    ],
+    "returnStops": [
+      { "name": "KHIT College (Campus)", "lat": 16.2366, "lng": 80.3957 },
+      { "name": "NH-16 Highway Corridor", "lat": 16.2650, "lng": 80.4050 },
+      { "name": "Gujjanagundla", "lat": 16.2870, "lng": 80.4280 },
+      { "name": "Collector Office", "lat": 16.3030, "lng": 80.4390 },
+      { "name": "Naaz Centre", "lat": 16.3015, "lng": 80.4475 },
+      { "name": "Guntur RTC Bus Stand", "lat": 16.3020, "lng": 80.4490 }
+    ]
+  },
+  {
+    "routeId": "R4",
+    "routeName": "Route 4 - Gorantla ↔ KHIT College",
+    "origin": "Gorantla",
+    "destination": "KHIT College (Chowdavaram)",
+    "defaultBusNumbers": ["52", "61"],
+    "outboundStops": [
+      { "name": "Gorantla", "lat": 16.3300, "lng": 80.4180 },
+      { "name": "Amaravathi Road Junction", "lat": 16.3180, "lng": 80.4290 },
+      { "name": "SVN Colony", "lat": 16.3120, "lng": 80.4260 },
+      { "name": "Gujjanagundla", "lat": 16.2870, "lng": 80.4280 },
+      { "name": "KHIT College (Campus)", "lat": 16.2366, "lng": 80.3957 }
+    ],
+    "returnStops": [
+      { "name": "KHIT College (Campus)", "lat": 16.2366, "lng": 80.3957 },
+      { "name": "Gujjanagundla", "lat": 16.2870, "lng": 80.4280 },
+      { "name": "SVN Colony", "lat": 16.3120, "lng": 80.4260 },
+      { "name": "Amaravathi Road Junction", "lat": 16.3180, "lng": 80.4290 },
+      { "name": "Gorantla", "lat": 16.3300, "lng": 80.4180 }
+    ]
+  },
+  {
+    "routeId": "R5",
+    "routeName": "Route 5 - ANU / Mangalagiri ↔ KHIT College",
+    "origin": "Acharya Nagarjuna University (ANU)",
+    "destination": "KHIT College (Chowdavaram)",
+    "defaultBusNumbers": ["38", "74"],
+    "outboundStops": [
+      { "name": "Acharya Nagarjuna University", "lat": 16.3765, "lng": 80.5280 },
+      { "name": "Autonagar Guntur", "lat": 16.3260, "lng": 80.4620 },
+      { "name": "Guntur RTC Stand", "lat": 16.3020, "lng": 80.4490 },
+      { "name": "Gujjanagundla Junction", "lat": 16.2870, "lng": 80.4280 },
+      { "name": "KHIT College (Campus)", "lat": 16.2366, "lng": 80.3957 }
+    ],
+    "returnStops": [
+      { "name": "KHIT College (Campus)", "lat": 16.2366, "lng": 80.3957 },
+      { "name": "Gujjanagundla Junction", "lat": 16.2870, "lng": 80.4280 },
+      { "name": "Guntur RTC Stand", "lat": 16.3020, "lng": 80.4490 },
+      { "name": "Autonagar Guntur", "lat": 16.3260, "lng": 80.4620 },
+      { "name": "Acharya Nagarjuna University", "lat": 16.3765, "lng": 80.5280 }
+    ]
+  },
+  {
+    "routeId": "R6",
+    "routeName": "Route 6 - Perecherla ↔ KHIT College",
+    "origin": "Perecherla Junction",
+    "destination": "KHIT College (Chowdavaram)",
+    "defaultBusNumbers": ["15", "82"],
+    "outboundStops": [
+      { "name": "Perecherla Junction", "lat": 16.3180, "lng": 80.3580 },
+      { "name": "Nallapadu Road", "lat": 16.2750, "lng": 80.3850 },
+      { "name": "Chowdavaram Bypass", "lat": 16.2480, "lng": 80.3920 },
+      { "name": "KHIT College (Campus)", "lat": 16.2366, "lng": 80.3957 }
+    ],
+    "returnStops": [
+      { "name": "KHIT College (Campus)", "lat": 16.2366, "lng": 80.3957 },
+      { "name": "Chowdavaram Bypass", "lat": 16.2480, "lng": 80.3920 },
+      { "name": "Nallapadu Road", "lat": 16.2750, "lng": 80.3850 },
+      { "name": "Perecherla Junction", "lat": 16.3180, "lng": 80.3580 }
+    ]
+  }
+]
